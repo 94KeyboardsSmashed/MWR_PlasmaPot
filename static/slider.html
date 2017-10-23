@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="slider.css">
+    </head>
+
+    <body>
+    <div class="range-slider">
+        <input class="range-slider__range" type="range" value="100" min="0" max="10000">
+        <span class="range-slider__value"></span>
+        <div class="unit">
+            <p>V</p>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script>
+        var rangeSlider = function() {
+        var slider = $(".range-slider"),
+            range = $(".range-slider__range"),
+            value = $(".range-slider__value");
+
+        slider.each(function() {
+            value.each(function() {
+            var value = $(this)
+                .prev()
+                .attr("value");
+            $(this).html(value);
+            });
+
+            range.on("input", function() {
+            $(this)
+                .next(value)
+                .html(this.value);
+            });
+        });
+        };
+
+        rangeSlider();
+    </script>
+    </body>
+</html>
