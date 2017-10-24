@@ -39,13 +39,13 @@ lcd.message('Starting')
 
 ser = serial.Serial('/dev/ttyACM0',9600)
 s = []
-#CORSICA = raspi_neopixel_lib.Adafruit_NeoPixel(LED_COUNT_1, LED_PIN_1, LED_FREQ_HZ_1,
-#                                                     LED_DMA_1, LED_INVERT_1, LED_BRIGHTNESS_1)
+CORSICA = raspi_neopixel_lib.Adafruit_NeoPixel(LED_COUNT_1, LED_PIN_1, LED_FREQ_HZ_1,
+                                                     LED_DMA_1, LED_INVERT_1, LED_BRIGHTNESS_1)
+CORSICA.begin()
 while True:
         read_serial=ser.readline()
         stripped = read_serial.rstrip()
         s.append(stripped)
-        #CORSICA.neopixel_percentage(0.5)
         if len(s) >= 20:
                 s.pop(0)
                 for val in s:
@@ -57,8 +57,9 @@ while True:
                 print ("%.0f" %image)
                 kilovolts = ((10.0/1023.0)*float(average)) #(19.0/3410.0)*x+4.3 for 4.3-10.0
                 if timer == 50:
+			CORSICA.color_gradient_rg((image/58.0)*100)
                         timer = 0
                         lcd.clear()
-                        lcd.message('Voltage (KV)\n%.1f' %kilovolts)
+                        lcd.message('Voltage\n%.1f KV' %kilovolts)
         stdout.flush()
         timer += 1

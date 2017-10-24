@@ -208,6 +208,7 @@ class Adafruit_NeoPixel(object):
             greeness = 255
         for i in range(self.numPixels()):
             self.setPixelColor(i, Color(int(redness), int(greeness), 0))
+            self.setBrightness(32)
             self.show()
 
     def color_gradient_br(self, percentage):
@@ -323,10 +324,12 @@ class Adafruit_NeoPixel(object):
             
     def neopixel_percentage(self, percentage):
         """Lights appropriate number of lights based on (decimal) percentage"""
-        for i in range(int(self.numPixels()*percentage)):
+        for i in range(self.numPixels()):
             self.setPixelColor(i, Color(255, 0, 0))
-            self.setBrightness(128)
-            self.show()
+            self.setBrightness(32)
+            if i >= int(self.numPixels()*percentage):
+                self.setBrightness(0)
+        self.show() 
             
     def neopixel_startup(self, noise=True):
         """Initiates the neopixel by doing a rainbow cycle, a yellow wipe, and green wipe

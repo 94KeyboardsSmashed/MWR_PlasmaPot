@@ -7,7 +7,7 @@
     <body>
         <div class="range-slider">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <input class="range-slider__range" type="range" id="slider" value="4.3" min="0" max="50" step="1" />
+            <input class="range-slider__range" type="range" id="slider" value="4.3" min="0" max="58" step="1" />
             <span class="range-slider__value"></span>
             <div class="unit">
                 <p>kV</p>
@@ -16,8 +16,10 @@
         </div>
         <img src=""  id='img'/>
         <script>
+	    var ws = new ReconnectingWebSocket('ws://atreus:8080/');
+
             var imageUrl = new Array();
-            
+                
                 imageUrl[0] = 'morphs/04300.png';
                 imageUrl[1] = 'morphs/04400.png';
                 imageUrl[2] = 'morphs/04300.png';
@@ -100,10 +102,11 @@
                 range.on("input", function() {
                 $(this)
                     .next(value)
-                    .html(this.value / 5);
+                    .html(Math.ceil((5.7/58 * this.value + 4.3)*10)/10);
             });
         });
         };
+	
 
         rangeSlider();
         
