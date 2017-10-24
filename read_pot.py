@@ -57,9 +57,11 @@ while True:
                 print ("%.0f" %image)
                 kilovolts = ((10.0/1023.0)*float(average)) #(19.0/3410.0)*x+4.3 for 4.3-10.0
                 if timer == 50:
-			CORSICA.color_gradient_rg((image/58.0)*100)
                         timer = 0
                         lcd.clear()
                         lcd.message('Voltage\n%.1f KV' %kilovolts)
+                elif timer % 25 == 0:
+                        CORSICA.neopixel_percentage(image/58)
+
         stdout.flush()
         timer += 1

@@ -9,7 +9,7 @@ Created on Mon Oct 2 12:13:27 2017
 IMPORTANT: THIS MODULE REQUIRES ROOT ACCESS TO RUN.
 Uses indents
 
-Adopted from the Adafruit NeoPixel Libraries Module created by 
+Adopted from the Adafruit NeoPixel Libraries Module created by
 Tony DiCola (tony@tonydicola.com), Jeremy Garff (jer@jers.net)
 
 """
@@ -325,10 +325,11 @@ class Adafruit_NeoPixel(object):
     def neopixel_percentage(self, percentage):
         """Lights appropriate number of lights based on (decimal) percentage"""
         for i in range(self.numPixels()):
-            self.setPixelColor(i, Color(255, 0, 0))
-            self.setBrightness(32)
             if i >= int(self.numPixels()*percentage):
-                self.setBrightness(0)
+                self.setPixelColor(i, Color(0, 0, 0))
+            else:
+                self.setPixelColor(i, Color(255, 0, 0))
+        self.setBrightness(32)
         self.show() 
             
     def neopixel_startup(self, noise=True):
