@@ -329,7 +329,7 @@ class Adafruit_NeoPixel(object):
                 self.setPixelColor(i, Color(0,0,0))
             else:
                 self.setPixelColor(i, Color(159, 194, 186))
-        self.setBrightness(16)
+        self.setBrightness(5)
         self.show() 
             
     def neopixel_startup(self, noise=True):

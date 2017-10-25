@@ -9,7 +9,7 @@
         <div id="data"></div>
 
         <div>
-            <img src="morphs/04300.png"  id='img'/>
+            <img src=""  id='img'/>
             <div id="data_read" class="kilovolt"></div>
         </div>
 
@@ -83,7 +83,7 @@
                 document.getElementById('count').textContent = "Hello World";
             };
             ws.onmessage = function(event) {
-                document.getElementById('data_read').textContent = Math.ceil((5.7/58 * event.data + 4.3)*10)/10 + "KVs";
+                document.getElementById('data_read').textContent = Math.ceil((5.7/58 * event.data + 4.3)*10)/10 + " KVs";
                 $("#img").prop("src", imageUrl[event.data]);
                 
             };
