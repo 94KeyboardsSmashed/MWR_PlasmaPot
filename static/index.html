@@ -10,13 +10,32 @@
 
         <div>
             <img src="morphs/04300.png"  id='img'/>
-            <div id="data_read" class="kilovolt"></div>
+            <img src="specs/thruster3.9kV.png" id='specImg'/>
+            <div id="data_read" class="kilovolt">3.4 kVs</div>
         </div>
 
         <script type="text/javascript" src="vendor/reconnecting-websocket.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
             var ws = new ReconnectingWebSocket('ws://atreus:8080/');
+
+            var specImageUrl = new Array;
+
+                specImageUrl[0] = 'specs/thruster3.9kV.png';
+                specImageUrl[1] = 'specs/thruster4.5kV.png';
+                specImageUrl[2] = 'specs/thruster4.9kV.png';
+                specImageUrl[3] = 'specs/thruster5.2kV.png';
+                specImageUrl[4] = 'specs/thruster5.6kV.png';
+                specImageUrl[5] = 'specs/thruster6.2kV.png';
+                specImageUrl[6] = 'specs/thruster6.5kV.png';
+                specImageUrl[7] = 'specs/thruster7kV.png';
+                specImageUrl[8] = 'specs/thruster7.5kV.png';
+                specImageUrl[9] = 'specs/thruster8kV.png';
+                    specImageUrl[10] = 'specs/thruster8.6kV.png';
+                    specImageUrl[11] = 'specs/thruster9kV.png';
+                    specImageUrl[12] = 'specs/thruster9.4kV.png';
+                    specImageUrl[13] = 'specs/thruster10kV.png';
+
             var imageUrl = new Array();
                 
                 imageUrl[0] = 'morphs/04300.png';
@@ -83,8 +102,9 @@
                 document.getElementById('count').textContent = "Hello World";
             };
             ws.onmessage = function(event) {
-                document.getElementById('data_read').textContent = Math.ceil((5.7/58 * event.data + 4.3)*10)/10 + "KVs";
+                document.getElementById('data_read').textContent = Math.ceil((5.7/58 * event.data + 4.3)*10)/10 + "kVs";
                 $("#img").prop("src", imageUrl[event.data]);
+                $("#specImg").prop("src", specImageUrl[Math.ceil((58/13 * event.data)*10)/10]);
                 
             };
         </script>

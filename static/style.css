@@ -13,6 +13,15 @@
     width: 100%;
     z-index: -1000;
   }
+  
+  #specImg{
+    position: fixed;
+    bottom: 50px;
+    left: 25px;
+    width: 360px;
+    height: auto;
+
+  }
 
   .kilovolt{
     position: absolute;
