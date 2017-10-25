@@ -9,8 +9,8 @@
         <div id="data"></div>
 
         <div>
-            <img src=""  id='img'/>
-            <div id="data_read" class="kilovolt">KV</div>
+            <img src="morphs/04300.png"  id='img'/>
+            <div id="data_read" class="kilovolt"></div>
         </div>
 
         <script type="text/javascript" src="vendor/reconnecting-websocket.min.js"></script>
@@ -83,7 +83,7 @@
                 document.getElementById('count').textContent = "Hello World";
             };
             ws.onmessage = function(event) {
-                document.getElementById('data_read').textContent = event.data;
+                document.getElementById('data_read').textContent = Math.ceil((5.7/58 * event.data + 4.3)*10)/10 + "KVs";
                 $("#img").prop("src", imageUrl[event.data]);
                 
             };
