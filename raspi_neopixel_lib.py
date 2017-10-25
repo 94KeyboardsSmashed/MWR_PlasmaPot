@@ -326,10 +326,10 @@ class Adafruit_NeoPixel(object):
         """Lights appropriate number of lights based on (decimal) percentage"""
         for i in range(self.numPixels()):
             if i >= int(self.numPixels()*percentage):
-                self.setPixelColor(i, Color(0, 0, 0))
+                self.setPixelColor(i, Color(0,0,0))
             else:
-                self.setPixelColor(i, Color(255, 0, 0))
-        self.setBrightness(32)
+                self.setPixelColor(i, Color(159, 194, 186))
+        self.setBrightness(16)
         self.show() 
             
     def neopixel_startup(self, noise=True):

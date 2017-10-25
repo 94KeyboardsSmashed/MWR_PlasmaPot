@@ -54,14 +54,15 @@ while True:
                 v = list(map(int, s))
                 average = int(sum(v)/len(v))
                 image = ((58.0/1023.0)*float(average))
-                print ("%.0f" %image)
+                rounded = "%.0f" %image
+		print (rounded)
                 kilovolts = ((10.0/1023.0)*float(average)) #(19.0/3410.0)*x+4.3 for 4.3-10.0
                 if timer == 50:
                         timer = 0
                         lcd.clear()
                         lcd.message('Voltage\n%.1f KV' %kilovolts)
-                elif timer % 25 == 0:
-                        CORSICA.neopixel_percentage(image/58)
+                elif timer % 7 == 0:
+                        CORSICA.neopixel_percentage(float(rounded)/58)
 
         stdout.flush()
         timer += 1
