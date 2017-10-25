@@ -16,10 +16,11 @@
 
   .kilovolt{
     position: absolute;
-    bottom: 8px;
+    color: white;
+    top: 32px;
     left: 16px;
     font-family: "Century Gothic", sans-serif;
-    font-size: 30px
+    font-size: 120px
 
   }
 
