@@ -13,6 +13,16 @@
     width: 100%;
     z-index: -1000;
   }
+
+  .kilovolt{
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    font-family: "Century Gothic", sans-serif;
+    font-size: 30px
+
+  }
+
   @media (min-width: 600px) {
     body {
       /*

@@ -7,18 +7,12 @@
     <body>
         <div id="count"></div>
         <div id="data"></div>
-        <div class="range-slider">
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-            <input class="range-slider__range" type="range" id="slider" value="4.3" min="0" max="58" step="1" />
-            <span class="range-slider__value"></span>
-            <div class="unit">
-                <p>kV</p>
-            </div>
-            
-        </div>
+
         <img src=""  id='img'/>
+            <div id="data_read" class="kilovolt"></div>
         
         <script type="text/javascript" src="vendor/reconnecting-websocket.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
             var ws = new ReconnectingWebSocket('ws://atreus:8080/');
             var imageUrl = new Array();
@@ -87,8 +81,9 @@
                 document.getElementById('count').textContent = "Hello World";
             };
             ws.onmessage = function(event) {
-                document.getElementById('data').textContent = event.data;
+                document.getElementById('data_read').textContent = event.data;
                 $("#img").prop("src", imageUrl[event.data]);
+                
             };
         </script>
     </body>
