@@ -6,6 +6,7 @@
     </head>
     <body>
         <div id="count"></div>
+        <div id="data"></div>
         <div class="range-slider">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
             <input class="range-slider__range" type="range" id="slider" value="4.3" min="0" max="58" step="1" />
@@ -23,9 +24,9 @@
             var imageUrl = new Array();
                 
                 imageUrl[0] = 'morphs/04300.png';
-                imageUrl[1] = 'morphs/04400.png';
-                imageUrl[2] = 'morphs/04300.png';
-                imageUrl[3] = 'morphs/04400.png';
+                imageUrl[1] = 'morphs/04300.png';
+                imageUrl[2] = 'morphs/04400.png';
+                imageUrl[3] = 'morphs/04500.png';
                 imageUrl[4] = 'morphs/04600.png';
                 imageUrl[5] = 'morphs/04700.png';
                 imageUrl[6] = 'morphs/04800.png';
@@ -81,39 +82,14 @@
                                     imageUrl[56] = 'morphs/09800.png';
                                     imageUrl[57] = 'morphs/09900.png';
                                     imageUrl[58] = 'morphs/10000.png';
+            
             ws.onopen = function() {
                 document.getElementById('count').textContent = "Hello World";
-            }
-            $(document).on('input change', '#slider', function() {//listen to slider changes
-                        var v=$(this).val();//getting slider val
-                    $('#sliderStatus').html( $(this).val() );
-                $("#img").prop("src", imageUrl[v]);
-               // .css('background-image', 'url("imageUrl[v])')
-            });
-            var rangeSlider = function() {
-            var slider = $(".range-slider"),
-                range = $(".range-slider__range"),
-                value = $(".range-slider__value");
-            
-            slider.each(function() {
-                value.each(function() {
-                var value = $(this)
-                    .prev()
-                    .attr("value");
-                $(this).html(value);
-                });
-
-                range.on("input", function() {
-                $(this)
-                    .next(value)
-                    .html(Math.ceil((5.7/58 * this.value + 4.3)*10)/10);
-            });
-        });
-        };
-	
-
-        rangeSlider();
-        
+            };
+            ws.onmessage = function(event) {
+                document.getElementById('data').textContent = event.data;
+                $("#img").prop("src", imageUrl[event.data]);
+            };
         </script>
     </body>
 </html>
